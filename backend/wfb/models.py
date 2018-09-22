@@ -84,7 +84,7 @@ class HelpLocationModel(models.Model):
     )
 
     category = models.ForeignKey(
-        'CategoryModel',
+        CategoryModel,
         null=False,
         blank=False,
         related_name="locations",
