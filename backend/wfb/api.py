@@ -1,7 +1,7 @@
 from rest_framework import generics
 from .serializers import CategorySerializer, PlaceSerializer
 from .models import CategoryModel, PlaceModel
-import django_filters.rest_framework
+from rest_framework import filters
 
 
 class PlaceList(generics.ListCreateAPIView):
@@ -9,8 +9,9 @@ class PlaceList(generics.ListCreateAPIView):
     Access list of places
     """
     queryset = PlaceModel.objects.all()
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('category__label', 'name')
     serializer_class = PlaceSerializer
-    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
 
 
 class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):
