@@ -49,7 +49,7 @@ def validate_email(email):
 
 class CategoryModel(models.Model):
     """
-    Category to be assigned to each help locaiton
+    Category to be assigned to each help location
     """
 
     label = models.CharField(
