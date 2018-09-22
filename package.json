@@ -1,0 +1,46 @@
+{
+  "name": "working-gear",
+  "version": "0.1.0",
+  "description": "A react builder project",
+  "author": {
+    "name": "user",
+    "email": "user@user.com"
+  },
+  "private": true,
+  "license": "NOLICENSE",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "i18next": "^11.2.3",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-i18next": "^7.6.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-transition-group": "^2.3.0",
+    "recompose": "^0.27.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "rrc": "^0.10.1",
+    "string-to-dom": "^0.1.5",
+    "styled-components": "^3.3.0",
+    "styled-transition-group": "^1.0.0"
+  },
+  "devDependencies": {
+    "prerender-spa-plugin": "^3.0.0",
+    "react-app-rewire-define-plugin": "^1.0.0",
+    "react-app-rewire-hot-loader": "^1.0.1",
+    "react-app-rewire-styled-components": "^3.0.2",
+    "react-app-rewired": "^1.5.0",
+    "react-hot-loader": "^4.0.1"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "dev": "npm start",
+    "build": "react-app-rewired build && rm -rf dist && mv build dist",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
