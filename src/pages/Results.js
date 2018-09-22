@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import ListItem from 'src/components/ListItem';
 import ColumnContainer from 'src/components/ColumnContainer';
 import FilterBar from 'src/components/FilterBar';
-import LocationSearchInput from 'src/components/LocationSearchInput';
 
 const listData = [
   {
@@ -21,7 +20,6 @@ class Results extends Component {
     return (
       <Root>
         <FilterBar />
-        <LocationSearchInput />
         <ColumnContainer
           left={
             <ListContainer>
