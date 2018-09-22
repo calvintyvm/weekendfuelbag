@@ -19,6 +19,7 @@ class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = PlaceModel.objects.all()
     serializer_class = PlaceSerializer
+    lookup_field = 'id'
 
 
 class CategoryList(generics.ListCreateAPIView):
@@ -43,6 +44,7 @@ class CategoryDetail(generics.RetrieveAPIView):
     Return a requested category instance with the given label
     """
     serializer_class = CategorySerializer
+    lookup_field = 'id'
 
     def get_queryset(self):
         queryset = CategoryModel.objects.all()
