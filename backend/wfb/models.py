@@ -109,5 +109,12 @@ class PlaceModel(models.Model):
         default=""
     )
 
+    phone = models.CharField(
+            blank=True,  # not required
+            max_length=20,
+            default=""
+        )
+    
+
     def __str__(self):
         return self.name
