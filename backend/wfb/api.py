@@ -1,6 +1,7 @@
 from rest_framework import generics
 from .serializers import CategorySerializer, PlaceSerializer
 from .models import CategoryModel, PlaceModel
+import django_filters.rest_framework
 
 
 class PlaceList(generics.ListCreateAPIView):
@@ -9,6 +10,7 @@ class PlaceList(generics.ListCreateAPIView):
     """
     queryset = PlaceModel.objects.all()
     serializer_class = PlaceSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
 
 
 class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -19,7 +21,7 @@ class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PlaceSerializer
 
 
-class CategoryList(generics.ListAPIView):
+class CategoryList(generics.ListCreateAPIView):
     """
     Category to be assigned to help places
 
