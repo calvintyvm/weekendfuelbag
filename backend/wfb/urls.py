@@ -15,13 +15,13 @@ urlpatterns = [
         name="api_root"),
 
     # Location
-    url(r'^api/locations/$',
-        api.HelpLocationList.as_view(),
-        name="api_list_locations"),
+    url(r'^api/places/$',
+        api.PlaceList.as_view(),
+        name="api_list_places"),
 
-    url(r'^api/locations/(?P<id>[0-9]+)/$',
-        api.HelpLocationDetail.as_view(),
-        name="api_location_detail"),
+    url(r'^api/places/(?P<id>[0-9]+)/$',
+        api.PlaceDetail.as_view(),
+        name="api_place_detail"),
 
     # Category
     url(r'^api/categories/$',

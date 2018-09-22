@@ -15,7 +15,7 @@ import json
 @permission_classes((AllowAny,))  # todo: admin only in production
 def api_root(request, format=None):
     return Response({
-        'locations': reverse('api_list_locations', request=request, format=format),
+        'places': reverse('api_list_places', request=request, format=format),
         'categories': reverse('api_list_categories', request=request, format=format),
     })
 

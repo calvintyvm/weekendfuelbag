@@ -33,7 +33,7 @@ class CategoryModel(models.Model):
 # ---------------------------------------------------------------------------
 
 
-class HelpLocationModel(models.Model):
+class PlaceModel(models.Model):
     """
     Location that a student can get helps
     """
@@ -50,7 +50,7 @@ class HelpLocationModel(models.Model):
         CategoryModel,
         null=False,
         blank=False,
-        related_name="locations",
+        related_name="places",
         on_delete=models.PROTECT  # its category need to be re-assigned
     )
 

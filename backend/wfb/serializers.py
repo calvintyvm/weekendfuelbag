@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CategoryModel, HelpLocationModel
+from .models import CategoryModel, PlaceModel
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -12,9 +12,9 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         fields = ("label",)
 
 
-class HelpLocationSerializer(serializers.HyperlinkedModelSerializer):
+class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     """
-    Work with quick locaiton info
+    Work with quick place's info
     """
 
     category = serializers.PrimaryKeyRelatedField(
@@ -22,7 +22,7 @@ class HelpLocationSerializer(serializers.HyperlinkedModelSerializer):
     )
 
     class Meta:
-        model = HelpLocationModel
+        model = PlaceModel
         fields = ("id", "name", "category",
                   "lat", "lon",
                   "created_at", "address",

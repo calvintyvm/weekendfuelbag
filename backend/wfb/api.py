@@ -1,27 +1,27 @@
 from rest_framework import generics
-from .serializers import CategorySerializer, HelpLocationSerializer
-from .models import CategoryModel, HelpLocationModel
+from .serializers import CategorySerializer, PlaceSerializer
+from .models import CategoryModel, PlaceModel
 
 
-class HelpLocationList(generics.ListCreateAPIView):
+class PlaceList(generics.ListCreateAPIView):
     """
-    Access list of locations
+    Access list of places
     """
-    queryset = HelpLocationModel.objects.all()
-    serializer_class = HelpLocationSerializer
+    queryset = PlaceModel.objects.all()
+    serializer_class = PlaceSerializer
 
 
-class HelpLocationDetail(generics.RetrieveUpdateDestroyAPIView):
+class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Accesss location's detail
+    Access place's detail
     """
-    queryset = HelpLocationModel.objects.all()
-    serializer_class = HelpLocationSerializer
+    queryset = PlaceModel.objects.all()
+    serializer_class = PlaceSerializer
 
 
 class CategoryList(generics.ListAPIView):
     """
-    Category to be assigned to help locations
+    Category to be assigned to help places
 
     get:
     Return a list of all the existing categories.
