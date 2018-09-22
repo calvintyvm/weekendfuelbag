@@ -27,6 +27,7 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
                   "lat", "lon",
                   "created_at", "address",
                   "email", "description",
+                  "website", "phone",
                   "min_age", "max_age")
 
     def validate(self, attrs):
