@@ -56,4 +56,10 @@ injectGlobal`
     src: url('/assets/fonts/Roboto-Regular.woff2') format('woff2'),
       url('/assets/fonts/Roboto-Regular.woff') format('woff');
   }
+  .autocomplete-dropdown-container{
+    right: 65px;
+    position: absolute;
+    width: 400px;
+    z-index: 1;
+  }
 `;

@@ -24,4 +24,5 @@ const Root = styled.button`
   text-transform: uppercase;
   letter-spacing: 0;
   color: white;
+  cursor: pointer;
 `;

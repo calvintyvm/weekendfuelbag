@@ -3,11 +3,14 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import styled from 'styled-components';
 
 class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: '' };
+    this.state = {
+      address: '',
+    };
   }
 
   handleChange = address => {
@@ -18,6 +21,8 @@ class LocationSearchInput extends React.Component {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => console.log('Success', latLng, address))
+      .then(() => this.setState({ address: address }))
+      .then(() => console.log(this.state.address))
       .catch(error => console.error('Error', error));
   };
 
@@ -31,14 +36,16 @@ class LocationSearchInput extends React.Component {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
             <input
+              style={{ position: 'relative', zIndex: 999, width: 400 }}
               {...getInputProps({
                 placeholder: 'Search Places ...',
                 className: 'location-search-input',
               })}
+              value={this.state.address}
             />
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}
-              {suggestions.map(suggestion => {
+              {suggestions.map((suggestion, index) => {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
@@ -53,7 +60,7 @@ class LocationSearchInput extends React.Component {
                       style,
                     })}
                   >
-                    <span>{suggestion.description}</span>
+                    <Description>{suggestion.description}</Description>
                   </div>
                 );
               })}
@@ -66,3 +73,5 @@ class LocationSearchInput extends React.Component {
 }
 
 export default LocationSearchInput;
+
+const Description = styled.span``;
