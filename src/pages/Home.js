@@ -1,24 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { I18n } from 'react-i18next';
+import Button from 'src/components/Button';
+import styled from 'styled-components';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.label = 'Begin';
+  }
   render() {
     return (
-      <I18n>
-        {(t, { i18n }) => {
-          return (
-            <main>
-              <h1>{t('home')}</h1>
-              <Link to={i18n.language === 'en' ? '/jp' : '/'}>
-                {t('switchLang')}
-              </Link>
-            </main>
-          );
-        }}
-      </I18n>
+      <Root>
+        <Content>
+          <h1>WELCOME</h1>
+          <Link to="/information">
+            <Button label={this.label} />
+          </Link>
+        </Content>
+      </Root>
     );
   }
 }
 
 export default Home;
+
+const Root = styled.div`
+  height: 100vh;
+  width: 100%;
+  background: red;
+`;
+
+const Content = styled.div`
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  height: 20%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

@@ -32,7 +32,15 @@ injectGlobal`
     text-decoration: none;
     color: ${theme.colorPrimary};
   }
-
+  h1{
+    font-family:'PT Sans';
+    font-weight:bolder;
+    color:white;
+  }
+  p{
+    font-family:'PT Sans';
+    font-weight:lighter;
+  }
   main {
     text-align: center;
     position: absolute;
@@ -41,6 +49,7 @@ injectGlobal`
     width: 100%;
     height: 100%;
   }
+  @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 
   @font-face {
     font-family: 'Roboto';
