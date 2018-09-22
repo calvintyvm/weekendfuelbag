@@ -76,14 +76,12 @@ class PlaceModel(models.Model):
 
     address = models.TextField(
         help_text=_("Address of this help location"),
-        null=True,
         blank=True
     )
 
     email = models.EmailField(
         verbose_name=_('email address'),
         blank=True,  # not required
-        unique=True,
         default="",
     )
 
