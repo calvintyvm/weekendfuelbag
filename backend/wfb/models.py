@@ -1,45 +1,8 @@
-from django.core.exceptions import ValidationError
 from django.db import models
-from django.contrib.auth.models import User, AbstractBaseUser, PermissionsMixin, BaseUserManager
-from django.urls import reverse
+from django.contrib.auth.models import User, AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
-from django.dispatch import receiver
-from django.core.validators import MinValueValidator
-from django.core.exceptions import ObjectDoesNotExist
 
 from rest_framework.authtoken.models import Token
-
-import shutil
-import os
-import logging
-from model_utils.managers import InheritanceManager
-from model_utils import Choices
-
-
-# ---------------------------------------------------------------------------
-# VALIDATORS
-# ---------------------------------------------------------------------------
-
-def validate_email(email):
-    """
-
-    Args:
-        email(str):
-
-    Returns:
-        None
-
-    Raises:
-        ValidationError: if the email fails some validations process
-
-    """
-
-    if email == "":
-        raise ValidationError(
-            _("%(email)s cannot be empty"),
-            params={"email": email},
-        )
 
 
 # ---------------------------------------------------------------------------
@@ -107,7 +70,9 @@ class HelpLocationModel(models.Model):
         max_digits=9
     )
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
     address = models.TextField(
         help_text=_("Address of this help location"),
@@ -117,16 +82,27 @@ class HelpLocationModel(models.Model):
 
     email = models.EmailField(
         verbose_name=_('email address'),
-        blank=False,
-        null=False,
+        blank=True,  # not required
         unique=True,
-        validators=[validate_email]
+        default="",
     )
 
     description = models.TextField(
         verbose_name=_("Description of this help location"),
         help_text=_("more detail of this help location"),
         blank=True  # this is not required
+    )
+
+    min_age = models.IntegerField(
+        verbose_name=_("Min age to access this location"),
+        null=False,
+        blank=False,
+    )
+
+    max_age = models.IntegerField(
+        verbose_name=_("Max age to access this location"),
+        null=False,
+        blank=False,
     )
 
     def __str__(self):
