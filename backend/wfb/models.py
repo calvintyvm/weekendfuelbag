@@ -103,5 +103,11 @@ class PlaceModel(models.Model):
         blank=False,
     )
 
+    website = models.CharField(
+        blank=True,  # not required
+        max_length=100,
+        default=""
+    )
+
     def __str__(self):
         return self.name
