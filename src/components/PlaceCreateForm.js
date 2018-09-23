@@ -127,81 +127,92 @@ class PlaceCreateForm extends Component {
     return (
       <Form className="place-create-form"
             onSubmit={this.handleSubmit}>
-        <LeftPanel>
-          <label>
-            <div className='form-label'> Name</div>
-            <input type="text"
-                   value={this.state.name}
-                   onChange={this.handleNameChange}/>
-          </label>
 
-          <label>
-            <div className='form-label'> Address</div>
-            <input type="text"
-                   value={this.state.address}
-                   onChange={this.handleAddressChange}/>
-          </label>
+        <FormHeader>
+          ORGANISATION APPLICATION FORM
+        </FormHeader>
+
+        <FormContent>
+          <LeftPanel>
+            <label>
+              <div className='form-label'> Name</div>
+              <input type="text"
+                     value={this.state.name}
+                     onChange={this.handleNameChange}/>
+            </label>
+
+            <label>
+              <div className='form-label'> Address</div>
+              <input type="text"
+                     value={this.state.address}
+                     onChange={this.handleAddressChange}/>
+            </label>
 
 
-          <label>
-            <div className='form-label'> Category</div>
-            <input type="text"
-                   value={this.state.category}
-                   onChange={this.handleCategoryChange}/>
-          </label>
+            <label>
+              <div className='form-label'> Category</div>
+              <input type="text"
+                     value={this.state.category}
+                     onChange={this.handleCategoryChange}/>
+            </label>
 
-          <label>
-            <div className='form-label'> Email</div>
-            <input type="text"
-                   value={this.state.email}
-                   onChange={this.handleEmailChange}/>
-          </label>
+            <label>
+              <div className='form-label'> Email</div>
+              <input type="text"
+                     value={this.state.email}
+                     onChange={this.handleEmailChange}/>
+            </label>
 
-          <label>
-            <div className='form-label'> Description</div>
-            <input type="text"
-                   value={this.state.description}
-                   onChange={this.handleDescriptionChange}/>
-          </label>
+            <label>
+              <div className='form-label'> Description</div>
+              <input type="text"
+                     value={this.state.description}
+                     onChange={this.handleDescriptionChange}/>
+            </label>
 
-        </LeftPanel>
-        <RightPanel>
-          <label>
-            <div className='form-label'> Website</div>
-            <input type="text"
-                   value={this.state.website}
-                   onChange={this.handleWebsiteChange}/>
-          </label>
+          </LeftPanel>
+          <RightPanel>
+            <label>
+              <div className='form-label'> Website</div>
+              <input type="text"
+                     value={this.state.website}
+                     onChange={this.handleWebsiteChange}/>
+            </label>
 
-          <label>
-            <div className='form-label'> Phone</div>
-            <input type="text"
-                   value={this.state.phone}
-                   onChange={this.handlePhoneChange}/>
-          </label>
+            <label>
+              <div className='form-label'> Phone</div>
+              <input type="text"
+                     value={this.state.phone}
+                     onChange={this.handlePhoneChange}/>
+            </label>
 
-          <label>
-            <div className='form-label'> Min age</div>
-            <input type="text"
-                   value={this.state.minAge}
-                   onChange={this.handleMinAgeChange}/>
-          </label>
+            <label>
+              <div className='form-label'> Min age</div>
+              <input type="text"
+                     value={this.state.minAge}
+                     onChange={this.handleMinAgeChange}/>
+            </label>
 
-          <label>
-            <div className='form-label'> Max age</div>
-            <input type="text"
-                   value={this.state.maxAge}
-                   onChange={this.handleMaxAgeChange}/>
-          </label>
+            <label>
+              <div className='form-label'> Max age</div>
+              <input type="text"
+                     value={this.state.maxAge}
+                     onChange={this.handleMaxAgeChange}/>
+            </label>
 
-          <label>
-            <div className='form-label'> Image url</div>
-            <input type="text"
-                   value={this.state.imageURL}
-                   onChange={this.handleImageURLChange}/>
-          </label>
-        </RightPanel>
-        <input type="submit" value="Submit"/>
+            <label>
+              <div className='form-label'> Image url</div>
+              <input type="text"
+                     value={this.state.imageURL}
+                     onChange={this.handleImageURLChange}/>
+            </label>
+          </RightPanel>
+        </FormContent>
+
+        <FormActions>
+          <input type="submit" value="Submit"/>
+        </FormActions>
+
       </Form>
     );
   }
@@ -210,10 +221,11 @@ class PlaceCreateForm extends Component {
 export default PlaceCreateForm;
 
 const Form = styled.form`
+
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   overflow: hidden;
-  
+ 
   label {
   padding: 10px;
   }
@@ -224,6 +236,19 @@ const Form = styled.form`
   }
 `;
 
+const FormHeader = styled.div`
+  text-align: center;
+`;
+
+const FormContent = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: hidden;
+`;
+
+const FormActions = styled.div`
+text-align: center;
+`;
 
 const LeftPanel = styled.div`
  display: flex;
