@@ -11,21 +11,29 @@ class Results extends Component {
     super(props);
     this.state = {
       data: null,
+      isLoading: false,
     };
   }
 
   componentDidMount() {
     let that = this;
+    that.isLoading = true;
     fetch('http://localhost:8000/wfb/api/places/' + this.props.query)
       .then(function(response) {
         return response.json();
       })
       .then(function(data) {
         const values = data;
+        that.isLoading = false;
         that.data = values.results;
       });
   }
   render() {
+    const { isLoading } = this.state;
+
+    if (isLoading) {
+      return <p>Loading ...</p>;
+    }
     let that = this;
     return (
       <Root>

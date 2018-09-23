@@ -39,7 +39,7 @@ class PlaceList(generics.ListCreateAPIView):
         if category is not None:
             queryset = queryset.filter(category__label__icontains=category)
 
-        return queryset
+        return queryset.order_by('created_at').reverse()
 
 
 class PlaceDetail(generics.RetrieveUpdateDestroyAPIView):

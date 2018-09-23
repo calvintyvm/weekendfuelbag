@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Button from 'src/components/Button';
 import styled from 'styled-components';
-import axios from "axios";
+import axios from 'axios';
 
 class PlaceCreateForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',           // name must not be empty
+      name: '', // name must not be empty
       address: '',
-      lat: "49.274763",
-      lon: "-123.081961",
-      category: 'food',   // category must be valid
+      lat: '49.283454',
+      lon: '-123.115253',
+      category: 'food', // category must be valid
       email: '',
       description: '',
       website: '',
@@ -21,7 +21,7 @@ class PlaceCreateForm extends Component {
       minAge: 12,
       maxAge: 18,
       imageURL: '',
-      isLoading: false
+      isLoading: false,
     };
 
     // setup input handlers
@@ -41,201 +41,210 @@ class PlaceCreateForm extends Component {
   }
 
   handleNameChange(event) {
-    this.setState({name: event.target.value});
+    this.setState({ name: event.target.value });
   }
 
   handleAddressChange(event) {
-    this.setState({address: event.target.value});
-
+    this.setState({ address: event.target.value });
   }
 
   handleCategoryChange(event) {
-    this.setState({category: event.target.value});
+    this.setState({ category: event.target.value });
   }
 
   handleEmailChange(event) {
-    this.setState({email: event.target.value});
+    this.setState({ email: event.target.value });
   }
 
   handleDescriptionChange(event) {
-    this.setState({description: event.target.value});
+    this.setState({ description: event.target.value });
   }
 
   handleWebsiteChange(event) {
-    this.setState({website: event.target.value});
+    this.setState({ website: event.target.value });
   }
 
   handlePhoneChange(event) {
-    this.setState({phone: event.target.value});
+    this.setState({ phone: event.target.value });
   }
 
   handleMinAgeChange(event) {
-    this.setState({minAge: event.target.value});
+    this.setState({ minAge: event.target.value });
   }
 
   handleMaxAgeChange(event) {
-    this.setState({maxAge: event.target.value});
+    this.setState({ maxAge: event.target.value });
   }
 
   handleImageURLChange(event) {
-    this.setState({imageURL: event.target.value});
+    this.setState({ imageURL: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
     let data = {
-      "name": this.state.name,
-      "category": this.state.category,
-      "address": this.state.address,
-      "lat": this.state.lat,
-      "lon": this.state.lon,
-      "email": this.state.email,
-      "description": this.state.description,
-      "website": this.state.website,
-      "phone": this.state.phone,
-      "min_age": this.state.minAge,
-      "max_age": this.state.maxAge,
-      "image_url": this.state.imageURL,
+      name: this.state.name,
+      category: this.state.category,
+      address: this.state.address,
+      lat: this.state.lat,
+      lon: this.state.lon,
+      email: this.state.email,
+      description: this.state.description,
+      website: this.state.website,
+      phone: this.state.phone,
+      min_age: this.state.minAge,
+      max_age: this.state.maxAge,
+      image_url: this.state.imageURL,
     };
 
     let url = 'http://localhost:8000/wfb/api/places/';
 
-    this.setState({isLoading: true});
+    this.setState({ isLoading: true });
 
     axios({
       method: 'POST',
       data,
-      url
+      url,
     })
       .then(response => {
-        console.log("Successful save: ", response);
+        console.log('Successful save: ', response);
 
         // re-direct the home page
         window.location.href = window.origin;
-
       })
       .catch(error => {
-        console.log("Failed save: ", error);
+        console.log('Failed save: ', error);
       })
       .then(_ => {
-        this.setState({isLoading: false});
+        this.setState({ isLoading: false });
       });
   }
 
   render() {
     return (
-      <Form className="place-create-form"
-            onSubmit={this.handleSubmit}>
-
-        <FormHeader>
-          ORGANISATION APPLICATION FORM
-        </FormHeader>
+      <Form className="place-create-form" onSubmit={this.handleSubmit}>
+        <FormHeader>ORGANISATION APPLICATION FORM</FormHeader>
 
         <FormContent>
           <LeftPanel>
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span> Name </span>
               </div>
-              <input type="text"
-                     value={this.state.name}
-                     onChange={this.handleNameChange}/>
+              <input
+                type="text"
+                value={this.state.name}
+                onChange={this.handleNameChange}
+              />
             </FormInput>
 
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span> Category </span>
               </div>
-              <input type="text"
-                     value={this.state.category}
-                     onChange={this.handleCategoryChange}/>
+              <input
+                type="text"
+                value={this.state.category}
+                onChange={this.handleCategoryChange}
+              />
             </FormInput>
 
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span> Address </span>
               </div>
-              <input type="text"
-                     value={this.state.address}
-                     onChange={this.handleAddressChange}/>
+              <input
+                type="text"
+                value={this.state.address}
+                onChange={this.handleAddressChange}
+              />
             </FormInput>
 
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span>Email</span>
               </div>
-              <input type="text"
-                     value={this.state.email}
-                     onChange={this.handleEmailChange}/>
+              <input
+                type="text"
+                value={this.state.email}
+                onChange={this.handleEmailChange}
+              />
             </FormInput>
 
             <FormInput>
-              <div className='form-label'
-                   style={{height: 120}}>
+              <div className="form-label" style={{ height: 120 }}>
                 <span>Description</span>
               </div>
-              <textarea type="text"
-                        rows="5"
-                        value={this.state.description}
-                        onChange={this.handleDescriptionChange}/>
+              <textarea
+                type="text"
+                rows="5"
+                value={this.state.description}
+                onChange={this.handleDescriptionChange}
+              />
             </FormInput>
-
           </LeftPanel>
           <RightPanel>
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span> Website URL </span>
               </div>
-              <input type="text"
-                     value={this.state.website}
-                     onChange={this.handleWebsiteChange}/>
+              <input
+                type="text"
+                value={this.state.website}
+                onChange={this.handleWebsiteChange}
+              />
             </FormInput>
 
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span>Phone Number</span>
               </div>
-              <input type="text"
-                     value={this.state.phone}
-                     onChange={this.handlePhoneChange}/>
+              <input
+                type="text"
+                value={this.state.phone}
+                onChange={this.handlePhoneChange}
+              />
             </FormInput>
 
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span> Min Age </span>
               </div>
-              <input type="text"
-                     value={this.state.minAge}
-                     onChange={this.handleMinAgeChange}/>
+              <input
+                type="text"
+                value={this.state.minAge}
+                onChange={this.handleMinAgeChange}
+              />
             </FormInput>
 
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span> Max Age </span>
               </div>
-              <input type="text"
-                     value={this.state.maxAge}
-                     onChange={this.handleMaxAgeChange}/>
+              <input
+                type="text"
+                value={this.state.maxAge}
+                onChange={this.handleMaxAgeChange}
+              />
             </FormInput>
 
             <FormInput>
-              <div className='form-label'>
+              <div className="form-label">
                 <span>Image URL</span>
               </div>
-              <input type="text"
-                     value={this.state.imageURL}
-                     onChange={this.handleImageURLChange}/>
+              <input
+                type="text"
+                value={this.state.imageURL}
+                onChange={this.handleImageURLChange}
+              />
             </FormInput>
           </RightPanel>
         </FormContent>
 
         <FormActions>
-          <input type="submit"
-                 className="submit-btn"
-                 value="Submit"/>
+          <input type="submit" className="submit-btn" value="Submit" />
         </FormActions>
-
       </Form>
     );
   }
@@ -256,93 +265,85 @@ const FormContent = styled.div`
   display: flex;
   flex-flow: row nowrap;
   overflow: hidden;
-   margin-bottom: 30px;
+  margin-bottom: 30px;
 `;
 
 const FormActions = styled.div`
-text-align: center;
+  text-align: center;
 
-.submit-btn {
+  .submit-btn {
+    padding: 10px;
 
-  padding: 10px;
-
-  background-color:#f5a531; 
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-}
+    background-color: #f5a531;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
 `;
 
 const LeftPanel = styled.div`
-  
   flex: 1 1 50%;
-  
- display: flex;
- flex-flow: column nowrap;
-`;
-
-const RightPanel = styled.div`
-
-
-  flex: 1 1 50%;
-
- display: flex;
- flex-flow: column nowrap;
-`;
-
-const Form = styled.form`
 
   display: flex;
   flex-flow: column nowrap;
-  overflow: hidden;
- 
-  label {
-  padding: 10px;
-  }
-  
-  font-family: sans-serif;
-  
-  .form-label {
-  
+`;
+
+const RightPanel = styled.div`
+  flex: 1 1 50%;
+
   display: flex;
+  flex-flow: column nowrap;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: hidden;
+
+  label {
+    padding: 10px;
+  }
+
+  font-family: sans-serif;
+
+  .form-label {
+    display: flex;
     align-items: center;
     justify-content: center;
-  
+
     width: 200px;
     height: 40px;
-    
-    color:white;
+
+    color: white;
     text-align: center;
-    background-color:#f5a531; 
+    background-color: #f5a531;
     font-weight: bold;
-    
+
     span {
       display: flex;
       justify-content: center;
       align-items: center;
     }
   }
-  
 `;
 
 const FormInput = styled.div`
   padding: 10px;
-  font-size: 18; 
-  font-family: sans-serif; 
-  
+  font-size: 18;
+  font-family: sans-serif;
+
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  
+
   input {
-  height: 40px;
-  font-size: 18px;
-  padding-left: 10px;
+    height: 40px;
+    font-size: 18px;
+    padding-left: 10px;
   }
-  
+
   textarea {
-   font-size: 18px;
-  padding-left: 10px;
+    font-size: 18px;
+    padding-left: 10px;
   }
 `;
-
