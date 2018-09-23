@@ -32,8 +32,18 @@ class ListDescription extends Component {
         </Description>
         <Contact>
           <h1>Connect With Them</h1>
-          <input type="text" />
-          <input type="text" />
+          <Input>
+            <InputTitle>
+              <h2>Email</h2>
+            </InputTitle>
+            <input type="text" />
+          </Input>
+          <Input>
+            <InputTitle>
+              <h2>Phone</h2>
+            </InputTitle>
+            <input type="text" />
+          </Input>
         </Contact>
       </Root>
     );
@@ -43,6 +53,23 @@ class ListDescription extends Component {
 export default connect(state => ({
   result: state.results.result,
 }))(ListDescription);
+
+const InputTitle = styled.div`
+  width: 100px;
+  height: 30px;
+  background: #f5a623;
+  margin-top: 20px;
+  text-align: center;
+  h2 {
+    color: white !important;
+  }
+`;
+
+const Input = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+`;
 
 const Text = styled.div`
   display: flex;
@@ -64,7 +91,7 @@ const Contact = styled.div`
     color: white !important;
   }
   input {
-    width: 50%;
+    width: 100%;
     height: 30px;
     margin-top: 20px;
   }
