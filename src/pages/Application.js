@@ -26,16 +26,9 @@ const Root = styled.div`
   height: 100vh;
   width: 100%;
   background: red;
-`;
-
-const Content = styled.div`
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: center;
-  height: 20%;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
+  
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content: center;
   align-items: center;
 `;
