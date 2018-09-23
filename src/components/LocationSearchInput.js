@@ -4,6 +4,8 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 import styled from 'styled-components';
+import { setLatitude, setLongitude } from '../redux/form';
+import { connect } from 'react-redux';
 
 class LocationSearchInput extends React.Component {
   constructor(props) {
@@ -20,9 +22,11 @@ class LocationSearchInput extends React.Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng, address))
+      .then(latLng => {
+        this.props.dispatch(setLatitude(latLng.lat));
+        this.props.dispatch(setLongitude(latLng.lng));
+      })
       .then(() => this.setState({ address: address }))
-      .then(() => console.log(this.state.address))
       .catch(error => console.error('Error', error));
   };
 
@@ -72,6 +76,9 @@ class LocationSearchInput extends React.Component {
   }
 }
 
-export default LocationSearchInput;
+export default connect(state => ({
+  lat: state.form.latitude,
+  long: state.form.longitude,
+}))(LocationSearchInput);
 
 const Description = styled.span``;

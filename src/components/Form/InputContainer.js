@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import LocationSearchInput from 'src/components/LocationSearchInput';
+import { setAge } from '../../redux/form';
+import { connect } from 'react-redux';
 
 class InputContainer extends Component {
   render() {
     return (
       <Root>
         <h1>I am </h1>
-        <input type="text" />
+        <input
+          type="text"
+          onChange={e => {
+            this.props.dispatch(setAge(e.target.value));
+            console.log(this.props.age);
+          }}
+        />
         <h1>years old living in</h1>
         <LocationSearchInput />
       </Root>
@@ -15,7 +23,9 @@ class InputContainer extends Component {
   }
 }
 
-export default InputContainer;
+export default connect(state => ({
+  age: state.form.age,
+}))(InputContainer);
 
 const Root = styled.div`
   input {
