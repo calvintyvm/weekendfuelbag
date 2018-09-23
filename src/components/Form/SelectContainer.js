@@ -5,6 +5,8 @@ import imageSports from '../../assets/images/sports.png';
 import imageFood from '../../assets/images/food.png';
 import imageFriends from '../../assets/images/friends.png';
 import imageHealth from '../../assets/images/health.png';
+import { setCategory } from '../../redux/form';
+import { connect } from 'react-redux';
 
 class SelectContainer extends Component {
   render() {
@@ -16,54 +18,99 @@ class SelectContainer extends Component {
             <SelectionImage
               src={imageSchool}
               onClick={() => {
-                console.log('hello');
+                this.props.dispatch(setCategory('school'));
               }}
             />
-            <h1>School</h1>
+            <h1
+              style={
+                this.props.category == 'school'
+                  ? { color: '#f5a623' }
+                  : { color: 'white' }
+              }
+            >
+              School
+            </h1>
           </Selection>
           <Selection>
             <SelectionImage
               src={imageSports}
               onClick={() => {
-                console.log('hello');
+                this.props.dispatch(setCategory('sports'));
               }}
             />
-            <h1>School</h1>
+            <h1
+              style={
+                this.props.category == 'sports'
+                  ? { color: '#f5a623' }
+                  : { color: 'white' }
+              }
+            >
+              Sports
+            </h1>
           </Selection>
           <Selection>
             <SelectionImage
               src={imageFood}
               onClick={() => {
-                console.log('hello');
+                this.props.dispatch(setCategory('food'));
               }}
             />
-            <h1>Food</h1>
+            <h1
+              style={
+                this.props.category == 'food'
+                  ? { color: '#f5a623' }
+                  : { color: 'white' }
+              }
+            >
+              Food
+            </h1>
           </Selection>
           <Selection>
             <SelectionImage
               src={imageFriends}
               onClick={() => {
-                console.log('hello');
+                this.props.dispatch(setCategory('friends'));
               }}
             />
-            <h1>Friends</h1>
+            <h1
+              style={
+                this.props.category == 'friends'
+                  ? { color: '#f5a623' }
+                  : { color: 'white' }
+              }
+            >
+              Friends
+            </h1>
           </Selection>
           <Selection>
             <SelectionImage
               src={imageHealth}
               onClick={() => {
-                console.log('hello');
+                this.props.dispatch(setCategory('health'));
               }}
             />
-            <h1>Health</h1>
+            <h1
+              style={
+                this.props.category == 'health'
+                  ? { color: '#f5a623' }
+                  : { color: 'white' }
+              }
+            >
+              Health
+            </h1>
           </Selection>
         </Wrapper>
       </Root>
     );
   }
 }
+export default connect(state => ({
+  category: state.form.category,
+}))(SelectContainer);
 
-export default SelectContainer;
+const Selected = styled.h1`
+  color: #f5a623;
+`;
 
 const Selection = styled.div`
   display: flex;

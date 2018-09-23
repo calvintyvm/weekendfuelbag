@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ListItem from 'src/components/ListItem';
 import ColumnContainer from 'src/components/ColumnContainer';
 import FilterBar from 'src/components/FilterBar';
+import { connect } from 'react-redux';
 
 const listData = [
   {
@@ -16,9 +17,35 @@ const listData = [
 ];
 
 class Results extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null,
+    };
+  }
+
+  componentDidMount() {
+    let that = this;
+    fetch('http://localhost:8000/wfb/api/places/' + this.props.query)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        const values = data;
+        that.data = values.results;
+      });
+  }
   render() {
+    let that = this;
     return (
       <Root>
+        <button
+          onClick={() => {
+            console.log(that.data);
+          }}
+        >
+          hello
+        </button>
         <FilterBar />
         <ColumnContainer
           left={
@@ -37,7 +64,9 @@ class Results extends Component {
   }
 }
 
-export default Results;
+export default connect(state => ({
+  query: state.form.query,
+}))(Results);
 
 const Root = styled.div``;
 

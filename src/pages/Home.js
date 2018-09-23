@@ -8,6 +8,7 @@ class Home extends Component {
     super(props);
     this.label = 'Begin';
   }
+
   render() {
     return (
       <Root>
