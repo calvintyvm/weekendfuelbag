@@ -87,16 +87,16 @@ class PlaceCreateForm extends Component {
     let data = {
       "name": this.state.name,
       "category": this.state.category,
-      "address": "awd",
+      "address": this.state.address,
       lat: 49.274763,
       lon: -123.081961,
-      "email": "",
-      "description": "",
-      "website": "",
-      "phone": "",
-      "min_age": 13,
-      "max_age": 17,
-      "image_url": ""
+      "email": this.state.email,
+      "description": this.state.description,
+      "website": this.state.website,
+      "phone": this.state.phone,
+      "min_age": this.state.minAge,
+      "max_age": this.state.maxAge,
+      "image_url": this.state.imageURL,
     };
 
     let url = 'http://localhost:8000/wfb/api/places/';
