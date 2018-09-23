@@ -58,7 +58,7 @@ class PlaceManager(models.Manager):
 
             distance = geodesic(point, current_point).km
 
-            if distance < 20:
+            if distance < 1:
                 ret.append(current_place)
             else:
                 print(f'distance: {distance}')

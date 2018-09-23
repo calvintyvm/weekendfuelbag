@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Map from './Map';
+import imageComputer from '../assets/images/computer.png';
+import imageEmail from '../assets/images/email.png';
+import imagePhone from '../assets/images/phone.png';
+import imageLocation from '../assets/images/marker.png';
 
 class ListDescription extends Component {
   render() {
@@ -16,10 +20,22 @@ class ListDescription extends Component {
                   <Map mapLat={value.lat} mapLong={value.lon} />
                   <Text>
                     <Left>
-                      <p>{value.address}</p>
-                      <p>{value.email}</p>
-                      <p>{value.phone}</p>
-                      <p>{value.website}</p>
+                      <Info>
+                        <Icon src={imageLocation} />
+                        <p style={{ color: 'black' }}>{value.address}</p>
+                      </Info>
+                      <Info>
+                        <Icon src={imageEmail} />
+                        <p>{value.email}</p>
+                      </Info>
+                      <Info>
+                        <Icon src={imagePhone} />
+                        <p>{value.phone}</p>
+                      </Info>
+                      <Info>
+                        <Icon src={imageComputer} />
+                        <p>{value.website}</p>
+                      </Info>
                     </Left>
                     <Right>
                       <h1>Services</h1>
@@ -53,6 +69,22 @@ class ListDescription extends Component {
 export default connect(state => ({
   result: state.results.result,
 }))(ListDescription);
+
+const Icon = styled.img`
+  height: 30px;
+  width: 30px;
+`;
+
+const Info = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  p {
+    color: #5a8fd9;
+    width: 90%;
+    padding-left: 10px;
+  }
+`;
 
 const InputTitle = styled.div`
   width: 100px;
@@ -117,14 +149,6 @@ const Container = styled.div`
 const Left = styled.div`
   width: 55%;
   padding-left: 10px;
-  p:first-child {
-    color: black;
-  }
-  p {
-    margin-top: 10px;
-    color: #5a8fd9;
-    width: 90%;
-  }
 `;
 
 const Right = styled.div`

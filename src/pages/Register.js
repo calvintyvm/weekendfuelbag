@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 class Register extends Component {
   constructor(props) {
     super(props);
-    this.label = 'Submit';
+    this.label = 'Show my results';
   }
   render() {
     return (
@@ -60,5 +60,8 @@ const Root = styled.div`
   padding-top: 100px;
   h1 {
     text-transform: uppercase;
+  }
+  button {
+    width: 200px;
   }
 `;

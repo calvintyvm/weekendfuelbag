@@ -20,10 +20,7 @@ class Information extends Component {
           }
           right={
             <RightContainer>
-              <h1>
-                We are here to help <br />
-                students succeed.
-              </h1>
+              <h1>We can help</h1>
               <Copy>
                 We want students to be happy, healthy, engaged citizens that
                 contribute to their communities.
@@ -65,6 +62,7 @@ const FamilyImage = styled.div`
   background-image: url('/assets/images/family.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const Root = styled.div`
