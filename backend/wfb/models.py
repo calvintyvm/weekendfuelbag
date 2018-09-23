@@ -130,12 +130,14 @@ class PlaceModel(models.Model):
         verbose_name=_("Min age to access this location"),
         null=False,
         blank=False,
+        default=12
     )
 
     max_age = models.IntegerField(
         verbose_name=_("Max age to access this location"),
         null=False,
         blank=False,
+        default=18
     )
 
     website = models.CharField(
