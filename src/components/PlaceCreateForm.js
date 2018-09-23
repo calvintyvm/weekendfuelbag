@@ -110,6 +110,10 @@ class PlaceCreateForm extends Component {
     })
       .then(response => {
         console.log("Successful save: ", response);
+
+        // re-direct the home page
+        window.location.href = window.origin;
+
       })
       .catch(error => {
         console.log("Failed save: ", error);
