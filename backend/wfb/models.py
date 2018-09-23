@@ -58,6 +58,7 @@ class PlaceManager(models.Manager):
 
             distance = geodesic(point, current_point).km
 
+            # if the distance between the student location and the current help place is < 20
             if distance < 20:
                 ret.append(current_place)
             else:
@@ -160,3 +161,6 @@ class PlaceModel(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ('created_at',)
