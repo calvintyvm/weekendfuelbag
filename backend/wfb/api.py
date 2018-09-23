@@ -2,7 +2,6 @@ from rest_framework import generics
 from .serializers import CategorySerializer, PlaceSerializer
 from .models import CategoryModel, PlaceModel
 from django.db.models import Q
-from math import sin, cos, sqrt, atan2, radians
 
 
 class PlaceList(generics.ListCreateAPIView):
@@ -25,10 +24,12 @@ class PlaceList(generics.ListCreateAPIView):
         category = self.request.query_params.get('category', None)
 
         if lat is not None and lon is not None:
-            PlaceModel.objects.get_nearby_places({
+            nearby_places = PlaceModel.objects.get_nearby_places({
                 "lat": lat,
                 "lon": lon
             })
+            nearby_places_pks = [place.pk for place in nearby_places]
+            queryset = PlaceModel.objects.filter(pk__in=nearby_places_pks)
 
         if age is not None:
             queryset = queryset.filter(

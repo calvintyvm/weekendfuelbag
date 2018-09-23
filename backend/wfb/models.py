@@ -40,29 +40,30 @@ class PlaceManager(models.Manager):
         """
 
         :param place:
-        :return: QuerySet
+        :return: list
         """
 
-        all_places = self.all()
+        ret = []
 
         lat = place['lat']
         lon = place['lon']
         point = (lat, lon)
 
-        ret = []
+        for current_place in self.all():
 
-        for current_place in all_places:
+            # identify current point
             target_lat = current_place.lat
             target_lon = current_place.lon
             current_point = (target_lat, target_lon)
 
             distance = geodesic(point, current_point).km
 
-            print(f'distance: {distance}')
+            if distance < 20:
+                ret.append(current_place)
+            else:
+                print(f'distance: {distance}')
 
-            ret.append(current_point)
-
-        return self.all()
+        return ret
 
 
 class PlaceModel(models.Model):
