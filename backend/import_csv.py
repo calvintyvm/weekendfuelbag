@@ -27,9 +27,9 @@ def parse(csv_row):
         "max_age": int(random.uniform(15, 18)),
     }
 
-PlaceModel.objects.filter(category__label='food').delete()
+PlaceModel.objects.all().delete()
 
-with open('food_data.csv', mode='r') as csv_file:
+with open('data.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     line_count = 0
     for row in csv_reader:
