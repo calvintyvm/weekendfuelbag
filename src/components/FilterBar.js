@@ -12,5 +12,5 @@ export default FilterBar;
 const Root = styled.div`
   width: 100%;
   height: 100px;
-  background: green;
+  background: #5a8fd9;
 `;

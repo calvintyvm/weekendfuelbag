@@ -35,12 +35,12 @@ class SelectContainer extends Component {
             <SelectionImage
               src={imageSports}
               onClick={() => {
-                this.props.dispatch(setCategory('sports'));
+                this.props.dispatch(setCategory('sport'));
               }}
             />
             <h1
               style={
-                this.props.category == 'sports'
+                this.props.category == 'sport'
                   ? { color: '#f5a623' }
                   : { color: 'white' }
               }

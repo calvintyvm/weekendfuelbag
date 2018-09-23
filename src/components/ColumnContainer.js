@@ -30,6 +30,6 @@ const Root = styled.div`
     justify-content: space-around;
   }
   @media (min-width: ${media.md}) {
-    width: 86%;
+    width: 100%;
   }
 `;

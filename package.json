@@ -10,6 +10,7 @@
   "license": "NOLICENSE",
   "dependencies": {
     "classnames": "^2.2.5",
+    "google-map-react": "^1.0.8",
     "i18next": "^11.2.3",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
