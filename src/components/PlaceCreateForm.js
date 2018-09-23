@@ -129,14 +129,14 @@ class PlaceCreateForm extends Component {
             onSubmit={this.handleSubmit}>
         <LeftPanel>
           <label>
-            Name:
+            <div className='form-label'> Name</div>
             <input type="text"
                    value={this.state.name}
                    onChange={this.handleNameChange}/>
           </label>
 
           <label>
-            Address:
+            <div className='form-label'> Address</div>
             <input type="text"
                    value={this.state.address}
                    onChange={this.handleAddressChange}/>
@@ -144,21 +144,21 @@ class PlaceCreateForm extends Component {
 
 
           <label>
-            Category:
+            <div className='form-label'> Category</div>
             <input type="text"
                    value={this.state.category}
                    onChange={this.handleCategoryChange}/>
           </label>
 
           <label>
-            Email:
+            <div className='form-label'> Email</div>
             <input type="text"
                    value={this.state.email}
                    onChange={this.handleEmailChange}/>
           </label>
 
           <label>
-            Description:
+            <div className='form-label'> Description</div>
             <input type="text"
                    value={this.state.description}
                    onChange={this.handleDescriptionChange}/>
@@ -167,35 +167,35 @@ class PlaceCreateForm extends Component {
         </LeftPanel>
         <RightPanel>
           <label>
-            Website:
+            <div className='form-label'> Website</div>
             <input type="text"
                    value={this.state.website}
                    onChange={this.handleWebsiteChange}/>
           </label>
 
           <label>
-            Phone:
+            <div className='form-label'> Phone</div>
             <input type="text"
                    value={this.state.phone}
                    onChange={this.handlePhoneChange}/>
           </label>
 
           <label>
-            Min age:
+            <div className='form-label'> Min age</div>
             <input type="text"
                    value={this.state.minAge}
                    onChange={this.handleMinAgeChange}/>
           </label>
 
           <label>
-            Max age:
+            <div className='form-label'> Max age</div>
             <input type="text"
                    value={this.state.maxAge}
                    onChange={this.handleMaxAgeChange}/>
           </label>
 
           <label>
-            Image url:
+            <div className='form-label'> Image url</div>
             <input type="text"
                    value={this.state.imageURL}
                    onChange={this.handleImageURLChange}/>
@@ -213,6 +213,15 @@ const Form = styled.form`
   display: flex;
   flex-flow: row nowrap;
   overflow: hidden;
+  
+  label {
+  padding: 10px;
+  }
+  
+  .form-label {
+  display:inline-block;
+  width: 50px;
+  }
 `;
 
 
