@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from rest_framework.authtoken.models import Token
 
+from geopy.distance import geodesic
+
 
 # ---------------------------------------------------------------------------
 # Category
@@ -32,11 +34,44 @@ class CategoryModel(models.Model):
 # HelpLocation
 # ---------------------------------------------------------------------------
 
+class PlaceManager(models.Manager):
+
+    def get_nearby_places(self, place):
+        """
+
+        :param place:
+        :return: list
+        """
+
+        ret = []
+
+        lat = place['lat']
+        lon = place['lon']
+        point = (lat, lon)
+
+        for current_place in self.all():
+
+            # identify current point
+            target_lat = current_place.lat
+            target_lon = current_place.lon
+            current_point = (target_lat, target_lon)
+
+            distance = geodesic(point, current_point).km
+
+            if distance < 20:
+                ret.append(current_place)
+            else:
+                print(f'distance: {distance}')
+
+        return ret
+
 
 class PlaceModel(models.Model):
     """
     Location that a student can get helps
     """
+
+    objects = PlaceManager()
 
     name = models.CharField(
         verbose_name=_("Name of the help location"),
@@ -95,12 +130,14 @@ class PlaceModel(models.Model):
         verbose_name=_("Min age to access this location"),
         null=False,
         blank=False,
+        default=12
     )
 
     max_age = models.IntegerField(
         verbose_name=_("Max age to access this location"),
         null=False,
         blank=False,
+        default=18
     )
 
     website = models.CharField(
@@ -110,11 +147,10 @@ class PlaceModel(models.Model):
     )
 
     phone = models.CharField(
-            blank=True,  # not required
-            max_length=20,
-            default=""
-        )
-    
+        blank=True,  # not required
+        max_length=20,
+        default=""
+    )
 
     def __str__(self):
         return self.name
