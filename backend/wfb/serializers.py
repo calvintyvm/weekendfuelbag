@@ -28,10 +28,10 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
                   "created_at", "address",
                   "email", "description",
                   "website", "phone",
-                  "min_age", "max_age")
+                  "min_age", "max_age",
+                  "image_url")
 
     def validate(self, attrs):
-
         if attrs['min_age'] > attrs['max_age']:
             raise serializers.ValidationError('min_age should be < max_age')
 

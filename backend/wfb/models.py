@@ -152,5 +152,11 @@ class PlaceModel(models.Model):
         default=""
     )
 
+    image_url = models.CharField(
+        blank=True,
+        max_length=200,
+        default=""
+    )
+
     def __str__(self):
         return self.name
