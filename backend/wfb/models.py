@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from rest_framework.authtoken.models import Token
 
+from geopy.distance import geodesic
+
 
 # ---------------------------------------------------------------------------
 # Category
@@ -32,11 +34,43 @@ class CategoryModel(models.Model):
 # HelpLocation
 # ---------------------------------------------------------------------------
 
+class PlaceManager(models.Manager):
+
+    def get_nearby_places(self, place):
+        """
+
+        :param place:
+        :return: QuerySet
+        """
+
+        all_places = self.all()
+
+        lat = place['lat']
+        lon = place['lon']
+        point = (lat, lon)
+
+        ret = []
+
+        for current_place in all_places:
+            target_lat = current_place.lat
+            target_lon = current_place.lon
+            current_point = (target_lat, target_lon)
+
+            distance = geodesic(point, current_point).km
+
+            print(f'distance: {distance}')
+
+            ret.append(current_point)
+
+        return self.all()
+
 
 class PlaceModel(models.Model):
     """
     Location that a student can get helps
     """
+
+    objects = PlaceManager()
 
     name = models.CharField(
         verbose_name=_("Name of the help location"),
@@ -110,11 +144,10 @@ class PlaceModel(models.Model):
     )
 
     phone = models.CharField(
-            blank=True,  # not required
-            max_length=20,
-            default=""
-        )
-    
+        blank=True,  # not required
+        max_length=20,
+        default=""
+    )
 
     def __str__(self):
         return self.name
