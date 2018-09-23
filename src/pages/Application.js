@@ -25,7 +25,7 @@ export default Application;
 const Root = styled.div`
   height: 100vh;
   width: 100%;
-  background: red;
+  background: #5a8ed9;
   
   display:flex;
   flex-flow: row nowrap;

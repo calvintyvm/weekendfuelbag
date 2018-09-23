@@ -134,83 +134,106 @@ class PlaceCreateForm extends Component {
 
         <FormContent>
           <LeftPanel>
-            <label>
-              <div className='form-label'> Name</div>
+            <FormInput>
+              <div className='form-label'>
+                <span> Name </span>
+              </div>
               <input type="text"
                      value={this.state.name}
                      onChange={this.handleNameChange}/>
-            </label>
+            </FormInput>
 
-            <label>
-              <div className='form-label'> Address</div>
-              <input type="text"
-                     value={this.state.address}
-                     onChange={this.handleAddressChange}/>
-            </label>
-
-
-            <label>
-              <div className='form-label'> Category</div>
+            <FormInput>
+              <div className='form-label'>
+                <span> Category </span>
+              </div>
               <input type="text"
                      value={this.state.category}
                      onChange={this.handleCategoryChange}/>
-            </label>
+            </FormInput>
 
-            <label>
-              <div className='form-label'> Email</div>
+            <FormInput>
+              <div className='form-label'>
+                <span> Address </span>
+              </div>
+              <input type="text"
+                     value={this.state.address}
+                     onChange={this.handleAddressChange}/>
+            </FormInput>
+
+            <FormInput>
+              <div className='form-label'>
+                <span>Email</span>
+              </div>
               <input type="text"
                      value={this.state.email}
                      onChange={this.handleEmailChange}/>
-            </label>
+            </FormInput>
 
-            <label>
-              <div className='form-label'> Description</div>
-              <input type="text"
-                     value={this.state.description}
-                     onChange={this.handleDescriptionChange}/>
-            </label>
+            <FormInput>
+              <div className='form-label'
+                   style={{height: 120}}>
+                <span>Description</span>
+              </div>
+              <textarea type="text"
+                        rows="5"
+                        value={this.state.description}
+                        onChange={this.handleDescriptionChange}/>
+            </FormInput>
 
           </LeftPanel>
           <RightPanel>
-            <label>
-              <div className='form-label'> Website</div>
+            <FormInput>
+              <div className='form-label'>
+                <span> Website URL </span>
+              </div>
               <input type="text"
                      value={this.state.website}
                      onChange={this.handleWebsiteChange}/>
-            </label>
+            </FormInput>
 
-            <label>
-              <div className='form-label'> Phone</div>
+            <FormInput>
+              <div className='form-label'>
+                <span>Phone Number</span>
+              </div>
               <input type="text"
                      value={this.state.phone}
                      onChange={this.handlePhoneChange}/>
-            </label>
+            </FormInput>
 
-            <label>
-              <div className='form-label'> Min age</div>
+            <FormInput>
+              <div className='form-label'>
+                <span> Min Age </span>
+              </div>
               <input type="text"
                      value={this.state.minAge}
                      onChange={this.handleMinAgeChange}/>
-            </label>
+            </FormInput>
 
-            <label>
-              <div className='form-label'> Max age</div>
+            <FormInput>
+              <div className='form-label'>
+                <span> Max Age </span>
+              </div>
               <input type="text"
                      value={this.state.maxAge}
                      onChange={this.handleMaxAgeChange}/>
-            </label>
+            </FormInput>
 
-            <label>
-              <div className='form-label'> Image url</div>
+            <FormInput>
+              <div className='form-label'>
+                <span>Image URL</span>
+              </div>
               <input type="text"
                      value={this.state.imageURL}
                      onChange={this.handleImageURLChange}/>
-            </label>
+            </FormInput>
           </RightPanel>
         </FormContent>
 
         <FormActions>
-          <input type="submit" value="Submit"/>
+          <input type="submit"
+                 className="submit-btn"
+                 value="Submit"/>
         </FormActions>
 
       </Form>
@@ -219,6 +242,53 @@ class PlaceCreateForm extends Component {
 }
 
 export default PlaceCreateForm;
+
+const FormHeader = styled.div`
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+  font-family: sans-serif;
+  color: white;
+  font-weight: bolder;
+`;
+
+const FormContent = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: hidden;
+   margin-bottom: 30px;
+`;
+
+const FormActions = styled.div`
+text-align: center;
+
+.submit-btn {
+
+  padding: 10px;
+
+  background-color:#f5a531; 
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+`;
+
+const LeftPanel = styled.div`
+  
+  flex: 1 1 50%;
+  
+ display: flex;
+ flex-flow: column nowrap;
+`;
+
+const RightPanel = styled.div`
+
+
+  flex: 1 1 50%;
+
+ display: flex;
+ flex-flow: column nowrap;
+`;
 
 const Form = styled.form`
 
@@ -230,33 +300,49 @@ const Form = styled.form`
   padding: 10px;
   }
   
+  font-family: sans-serif;
+  
   .form-label {
-  display:inline-block;
-  width: 50px;
+  
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 200px;
+    height: 40px;
+    
+    color:white;
+    text-align: center;
+    background-color:#f5a531; 
+    font-weight: bold;
+    
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
+  
 `;
 
-const FormHeader = styled.div`
-  text-align: center;
-`;
-
-const FormContent = styled.div`
+const FormInput = styled.div`
+  padding: 10px;
+  font-size: 18; 
+  font-family: sans-serif; 
+  
   display: flex;
   flex-flow: row nowrap;
-  overflow: hidden;
-`;
-
-const FormActions = styled.div`
-text-align: center;
-`;
-
-const LeftPanel = styled.div`
- display: flex;
- flex-flow: column nowrap;
-`;
-
-const RightPanel = styled.div`
- display: flex;
- flex-flow: column nowrap;
+  justify-content: center;
+  
+  input {
+  height: 40px;
+  font-size: 18px;
+  padding-left: 10px;
+  }
+  
+  textarea {
+   font-size: 18px;
+  padding-left: 10px;
+  }
 `;
 
