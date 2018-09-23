@@ -9,6 +9,7 @@
   "private": true,
   "license": "NOLICENSE",
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "google-map-react": "^1.0.8",
     "i18next": "^11.2.3",

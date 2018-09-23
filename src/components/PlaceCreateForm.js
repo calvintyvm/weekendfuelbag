@@ -2,24 +2,26 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Button from 'src/components/Button';
 import styled from 'styled-components';
+import axios from "axios";
 
 class PlaceCreateForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
+      name: '',           // name must not be empty
       address: '',
-      lat: '',
-      lon: '',
-      category: '',
+      lat: "49.274763",
+      lon: "-123.081961",
+      category: 'food',   // category must be valid
       email: '',
       description: '',
       website: '',
       phone: '',
       minAge: 12,
       maxAge: 18,
-      imageURL: ''
+      imageURL: '',
+      isLoading: false
     };
 
     // setup input handlers
@@ -80,90 +82,143 @@ class PlaceCreateForm extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+
+    let data = {
+      "name": this.state.name,
+      "category": this.state.category,
+      "address": "awd",
+      lat: 49.274763,
+      lon: -123.081961,
+      "email": "",
+      "description": "",
+      "website": "",
+      "phone": "",
+      "min_age": 13,
+      "max_age": 17,
+      "image_url": ""
+    };
+
+    let url = 'http://localhost:8000/wfb/api/places/';
+
+    this.setState({isLoading: true});
+
+    axios({
+      method: 'POST',
+      data,
+      url
+    })
+      .then(response => {
+        console.log("Successful save: ", response);
+      })
+      .catch(error => {
+        console.log("Failed save: ", error);
+      })
+      .then(_ => {
+        this.setState({isLoading: false});
+      });
   }
 
   render() {
     return (
-      <form className="place-create-form"
+      <Form className="place-create-form"
             onSubmit={this.handleSubmit}>
+        <LeftPanel>
+          <label>
+            Name:
+            <input type="text"
+                   value={this.state.name}
+                   onChange={this.handleNameChange}/>
+          </label>
 
-        <label>
-          Name:
-          <input type="text"
-                 value={this.state.name}
-                 onChange={this.handleNameChange}/>
-        </label>
-
-        <label>
-          Address:
-          <input type="text"
-                 value={this.state.address}
-                 onChange={this.handleAddressChange}/>
-        </label>
+          <label>
+            Address:
+            <input type="text"
+                   value={this.state.address}
+                   onChange={this.handleAddressChange}/>
+          </label>
 
 
-        <label>
-          Category:
-          <input type="text"
-                 value={this.state.category}
-                 onChange={this.handleChange}/>
-        </label>
+          <label>
+            Category:
+            <input type="text"
+                   value={this.state.category}
+                   onChange={this.handleCategoryChange}/>
+          </label>
 
-        <label>
-          Email:
-          <input type="text"
-                 value={this.state.email}
-                 onChange={this.handleEmailChange}/>
-        </label>
+          <label>
+            Email:
+            <input type="text"
+                   value={this.state.email}
+                   onChange={this.handleEmailChange}/>
+          </label>
 
-        <label>
-          Description:
-          <input type="text"
-                 value={this.state.description}
-                 onChange={this.handleDescriptionChange}/>
-        </label>
+          <label>
+            Description:
+            <input type="text"
+                   value={this.state.description}
+                   onChange={this.handleDescriptionChange}/>
+          </label>
 
-        <label>
-          Website:
-          <input type="text"
-                 value={this.state.website}
-                 onChange={this.handleWebsiteChange}/>
-        </label>
+        </LeftPanel>
+        <RightPanel>
+          <label>
+            Website:
+            <input type="text"
+                   value={this.state.website}
+                   onChange={this.handleWebsiteChange}/>
+          </label>
 
-        <label>
-          Phone:
-          <input type="text"
-                 value={this.state.phone}
-                 onChange={this.handlePhoneChange}/>
-        </label>
+          <label>
+            Phone:
+            <input type="text"
+                   value={this.state.phone}
+                   onChange={this.handlePhoneChange}/>
+          </label>
 
-        <label>
-          Min age:
-          <input type="text"
-                 value={this.state.minAge}
-                 onChange={this.handleMinAgeChange}/>
-        </label>
+          <label>
+            Min age:
+            <input type="text"
+                   value={this.state.minAge}
+                   onChange={this.handleMinAgeChange}/>
+          </label>
 
-        <label>
-          Max age:
-          <input type="text"
-                 value={this.state.maxAge}
-                 onChange={this.handleMaxAgeChange}/>
-        </label>
+          <label>
+            Max age:
+            <input type="text"
+                   value={this.state.maxAge}
+                   onChange={this.handleMaxAgeChange}/>
+          </label>
 
-        <label>
-          Image url:
-          <input type="text"
-                 value={this.state.imageURL}
-                 onChange={this.handleImageURLChange}/>
-        </label>
-
+          <label>
+            Image url:
+            <input type="text"
+                   value={this.state.imageURL}
+                   onChange={this.handleImageURLChange}/>
+          </label>
+        </RightPanel>
         <input type="submit" value="Submit"/>
-      </form>
+      </Form>
     );
   }
 }
 
 export default PlaceCreateForm;
+
+const Form = styled.form`
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: hidden;
+`;
+
+
+const LeftPanel = styled.div`
+ display: flex;
+ flex-flow: column nowrap;
+`;
+
+const RightPanel = styled.div`
+ display: flex;
+ flex-flow: column nowrap;
+`;
+

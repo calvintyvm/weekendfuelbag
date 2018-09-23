@@ -13,10 +13,8 @@ class Application extends Component {
   render() {
     return (
       <Root>
-        <Content>
-          <PlaceCreateForm>
-          </PlaceCreateForm>
-        </Content>
+        <PlaceCreateForm>
+        </PlaceCreateForm>
       </Root>
     );
   }
