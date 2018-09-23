@@ -19,6 +19,10 @@ const routes = [
     path: '/results',
     component: 'pages/Results',
   },
+  {
+    path: '/application',
+    component: 'pages/Application',
+  },
 ];
 
 module.exports = routes;
