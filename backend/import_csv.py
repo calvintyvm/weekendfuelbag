@@ -22,12 +22,14 @@ def parse(csv_row):
         "description": csv_row['Description'],
         "website": csv_row['Website'],
         "phone": csv_row['Phone'],
+        "image_url": csv_row["image_url"],
         "min_age": int(random.uniform(12, 14)),
         "max_age": int(random.uniform(15, 18)),
     }
 
+PlaceModel.objects.all().delete()
 
-with open('sports-data.csv', mode='r') as csv_file:
+with open('data.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     line_count = 0
     for row in csv_reader:
